@@ -26,6 +26,19 @@
 
     <div ui-view layout-fill></div>
 
+
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBznq3b7X_ss1vlOxZ2u47vHnHd3sWPONE",
+        authDomain: "test-5b0f1.firebaseapp.com",
+        databaseURL: "https://test-5b0f1.firebaseio.com",
+        storageBucket: "test-5b0f1.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- run `gulp inject` to automatically populate bower script dependencies -->
