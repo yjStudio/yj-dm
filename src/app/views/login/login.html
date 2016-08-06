@@ -1,17 +1,17 @@
 <div layout layout-align="center center" layout-fill>
   <md-card id="yj-login">
     <md-card-content>
-      <h2>登入</h2>
-      <form name="login" layout="column">
+      <h2>用户登入</h2>
+      <form name="login" layout="column" ng-submit="vm.login()">
           <md-input-container>
             <label>用户</label>
-            <input ng-model="vm.user">
+            <input ng-model="vm.email" type="email">
           </md-input-container>
           <md-input-container>
             <label>密码</label>
             <input ng-model="vm.password" type="password">
           </md-input-container>
-          <md-button>
+          <md-button class="md-primary" type="submit">
             登入
           </md-button>
       </form>
