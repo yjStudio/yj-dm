@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, $mdThemingProvider) {
+  function config($logProvider, toastrConfig, $mdThemingProvider, $urlRouterProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -16,6 +16,9 @@
     toastrConfig.positionClass = 'toast-top-right';
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
+
+    //Ui router
+    $urlRouterProvider.otherwise('/');
 
     //custom theme
     $mdThemingProvider.theme('default')
