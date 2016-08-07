@@ -1,0 +1,21 @@
+<div layout layout-fill>
+  <md-sidenav
+        flex="none"
+        class="md-sidenav-left"
+        md-component-id="dashboard-sidebar-left"
+        md-is-locked-open="true"
+        md-whiteframe="4">
+      <md-toolbar>
+        <h1 class="md-toolbar-tools">仪表盘</h1>
+      </md-toolbar>
+      <md-content style="padding: 16px 0">
+        <md-list>
+          <md-list-item ui-sref="dashboard.categories">
+            <p> 分类 </p>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-sidenav>
+    <section ui-view>
+    </section>
+</div>
