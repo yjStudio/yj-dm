@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($log, STORE_user, toastr){
+  function LoginController($log, $state, STORE_user, toastr){
 
     var vm = this;
     vm.email = "yjstudio.2016@gmail.com";
@@ -15,6 +15,7 @@
     vm.login = function(){
       firebase.auth().signInWithEmailAndPassword(vm.email, vm.password)
       .then(function(user){
+        $state.go("dashboard");
         $log.debug("Login ok", user);
         toastr.success("登入成功");
       })
