@@ -49,7 +49,7 @@
           return;
         }
 
-        this.findCategoryByName("name")
+        this.findCategoryByName(categoryName)
         .then(function(){
           $log.warn("just exist this categories")
         })
@@ -59,8 +59,9 @@
         })
       },
 
-      updateCategory: function(){
-
+      updateCategory: function(id, data){
+        firebase.database().ref(this.endpoint +"/"+ id)
+        .update(data)
       },
 
       /**
