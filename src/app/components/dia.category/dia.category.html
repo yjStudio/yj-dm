@@ -1,0 +1,21 @@
+<md-dialog id="dia-category">
+  <md-toolbar>
+    <div class="md-toolbar-tools md-primary">
+      <h2>{{vm.isNew ? '新的分类':'修改分类'}}</h2>
+    </div>
+  </md-toolbar>
+  <form ng-submit="vm.createOrUpdate(vm.name)">
+    <md-dialog-content layout-padding>
+      <div>
+        <md-input-container>
+          <label>分类名字</label>
+          <input ng-model="vm.name" md-autofocus required>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="vm.cancel()">关闭</md-button>
+      <md-button type="submit" class="md-primary md-raised"> {{vm.isNew ? '创建':'保存'}}</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
