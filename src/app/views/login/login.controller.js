@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($log, $state, STORE_user, toastr){
+  function LoginController($log, $state, toastr){
 
     var vm = this;
     vm.email = "yjstudio.2016@gmail.com";

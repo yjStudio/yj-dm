@@ -6,7 +6,7 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController($log, $state, $timeout, STORE_user){
+  function DashboardController($log, $state, $timeout){
 
     var vm = this;
 
