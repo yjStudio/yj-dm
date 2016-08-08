@@ -10,9 +10,15 @@
 
     var store =
     {
-      categories:[],
-      endpoint: "categories",
+      categories:{},
 
+      event: new EventEmitter(),
+
+      EVENTS: {
+        change: "change",
+      },
+
+      endpoint: "categories",
       /**
        * get all categories
        * @method getCategories
@@ -90,6 +96,16 @@
         return deferred.promise;
       }
     }
+
+    //sync data
+    firebase.database().ref("categories")
+    .on('value', function(data) {
+      //refresh data
+      store.categories = data.val();
+
+      //fire change event
+      store.event.trigger(store.EVENTS.change);
+    });
 
     return store;
   }
