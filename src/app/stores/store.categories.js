@@ -1,4 +1,3 @@
-/* global malarkey:false, moment:false */
 (function() {
   'use strict';
 
@@ -15,7 +14,7 @@
       event: new EventEmitter(),
 
       EVENTS: {
-        change: "change",
+        change: "change"
       },
 
       endpoint: "categories",
@@ -68,6 +67,11 @@
       updateCategory: function(id, data){
         firebase.database().ref(this.endpoint +"/"+ id)
         .update(data)
+      },
+
+      removeCategory: function(id){
+        firebase.database().ref(this.endpoint +"/"+ id)
+        .remove()
       },
 
       /**
