@@ -6,14 +6,19 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController($log, $state, STORE_user){
+  function DashboardController($log, $state, $timeout, STORE_user){
 
     var vm = this;
-    //var user = firebase.auth().currentUser;
-    // if (!user){
-    //   //$state.go("login");
-    // }d
+
+    $timeout(function(){
+      var user = firebase.auth().currentUser;
+      console.log(user);
+      if (!user){
+        $state.go("login");
+      }
+    }, 500)
+
     var database = firebase.database();
-    
+
   }
 })();
