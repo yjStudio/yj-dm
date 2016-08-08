@@ -1,30 +1,24 @@
-<div>
-  <md-toolbar>
-    <h1 class="md-toolbar-tools">分类</h1>
-  </md-toolbar>
+<md-content id="dash-category" layout-fill>
+  <md-card flex="none">
+    <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">分类</span>
+      </md-card-header-text>
+    </md-card-header>
+    <md-card-actions layout="row" layout-align="start center">
+      <md-button ng-click="vm.showDialogCategory('new')" class="md-primary md-raised">
+        添加分类
+      </md-button>
+    </md-card-actions>
+    <md-card-content style="background: #EEE; margin-left:0; margin-right:0">
+      <md-list>
+        <md-list-item ng-repeat="(key, item) in vm.categories">
+          <p>{{item.name}}</p>
+          <md-icon ng-click="vm.showDialogCategory(key)" class="md-secondary md-hue-3">edit</md-icon>
+          <md-icon ng-click="vm.remove(key, item.name)" class="md-secondary">delete</md-icon>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
 
-  <md-content>
-    <md-card>
-      <md-card-header>
-        <md-card-header-text>
-          <span class="md-title">分类</span>
-        </md-card-header-text>
-      </md-card-header>
-      <md-card-actions layout="row" layout-align="start center">
-        <md-button ng-click="vm.showDialogCategory('new')" class="md-primary md-raised">
-          添加分类
-        </md-button>
-      </md-card-actions>
-      <md-card-content style="background: #EEE">
-        <md-list>
-          <md-list-item ng-repeat="(key, item) in vm.categories">
-            <p>{{item.name}}</p>
-            <md-icon ng-click="null" class="md-secondary md-hue-3">edit</md-icon>
-            <md-icon ng-click="null" class="md-secondary">delete</md-icon>
-          </md-list-item>
-        </md-list>
-      </md-card-content>
-    </md-card>
-
-  </md-content>
-</div>
+</md-content>

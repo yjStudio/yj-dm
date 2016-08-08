@@ -1,0 +1,10 @@
+#dash-category {
+  overflow: auto;
+}
+
+#dash-category md-card{
+  width: 100%;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
