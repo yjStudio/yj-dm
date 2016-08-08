@@ -1,5 +1,17 @@
 <md-content id="dash-articles" layout-fill>
-  <md-button ng-click="vm.showDialogArticle()" class="md-primary md-raised">
+  <md-button ng-click="" class="md-primary md-raised"
+    ngf-select="vm.uploadFiles($files,$invalidFile)"
+    ngf-resize-if="$width > 1200 || $height > 1200"
+    ngf-accept="'image/*'"
+    ngf-fix-orientation="true"
+    multiple="multiple">
     添加新的商品
   </md-button>
+  <md-card>
+    <md-card-content>
+    </md-card-content>
+    <md-card-footer>
+      Card footer
+    </md-card-footer>
+  </md-card>
 </md-content>

@@ -8,8 +8,9 @@
                      'ngSanitize',
                      'ngMessages',
                      'ngAria',
-                     'ui.router', 
+                     'ui.router',
                      'ngMaterial',
+                     'ngFileUpload',
                      'toastr']);
 
 })();
