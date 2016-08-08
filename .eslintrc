@@ -9,6 +9,7 @@
     "angular": true,
     "EventEmitter": true,
     "firebase": true,
+    "moment": true,
     "module": true,
     "inject": true
   }
