@@ -19,6 +19,24 @@
 
       endpoint: "articles",
 
+      getArticles: function(){
+        var that = this;
+        var deferred = $q.defer();
+
+        firebase.database().ref()
+        .child(this.endpoint)
+        .once("value", function(snapshot){
+          if(snapshot.val() === null){
+            deferred.reject();
+          }
+          else{
+            that.articles = snapshot.val();
+            deferred.resolve(that.articles);
+          }
+        });
+        return deferred.promise;
+      },
+
       createArticle: function(object){
         if(!object){
           $log.warn("Dont have article object");
