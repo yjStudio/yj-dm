@@ -11,6 +11,17 @@
     {
       articles:{},
 
+      ref: firebase.database().ref("articles"),
+
+      model: {
+        name: false,
+        imageUrl: false,
+        description: false,
+        createdDate: false,
+        modifiedDate: false,
+        serial: false
+      },
+
       event: new EventEmitter(),
 
       EVENTS: {
@@ -23,9 +34,7 @@
         var that = this;
         var deferred = $q.defer();
 
-        firebase.database().ref()
-        .child(this.endpoint)
-        .once("value", function(snapshot){
+        this.ref.once("value", function(snapshot){
           if(snapshot.val() === null){
             deferred.reject();
           }
@@ -42,14 +51,8 @@
           $log.warn("Dont have article object");
           return;
         }
-        object.createdDate = Date.now();
-        object.modifiedDate = Date.now();
 
-        var newItemRef = firebase.database().ref(this.endpoint)
-        .push(object);
-
-        newItemRef.val = object;
-        return newItemRef;
+        this.ref.push(Util.parseModel(this.model, object));
       },
 
       updateArticle: function(id, object){
@@ -57,10 +60,9 @@
           $log.warn("Dont have article object");
           return;
         }
-        object.modifiedDate = Date.now();
-        firebase.database().ref(this.endpoint)
-        .child(id)
-        .update(object);
+
+        this.ref.child(id)
+        .update(Util.parseModel(this.model, object));
       },
 
       uploadImage : function(id, file){
@@ -69,16 +71,13 @@
       },
 
       removeArticle: function(id){
-        firebase.database().ref(this.endpoint)
-        .child(id)
+        this.ref.child(id)
         .remove();
       }
-
     }
 
     //sync data
-    firebase.database().ref(store.endpoint)
-    .on('value', function(data) {
+    store.ref.on('value', function(data) {
       //refresh data
       store.articles = data.val();
 

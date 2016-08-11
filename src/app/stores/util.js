@@ -10,6 +10,25 @@
     var util =
     {
       /**
+       * asign value to model
+       * @method parseModel
+       * @param {object} model
+       * @param {object} value
+       * @return {object} copyOfModel
+       */
+      parseModel: function(originModel, values){
+        var model = angular.copy(originModel);
+        if(values == undefined) return model;
+        for(var key in values){
+          var new_values = values[key];
+          if (key in model){
+            model[key]=new_values;
+          }
+        }
+        return model;
+      },
+
+      /**
        * upload image function
        * @param {string} directory
        * @param {string} fileName
