@@ -10,6 +10,9 @@
   <md-button ng-click="vm.showDialogArticleCollective()" class="md-primary md-raised">
     添加多个商品
   </md-button> -->
+  <md-button ng-click="vm.showDialogArticle('new')" class="md-primary md-raised">
+    添加商品
+  </md-button>
   <md-card>
     <md-toolbar class="md-table-toolbar md-default">
       <div class="md-toolbar-tools">
@@ -21,6 +24,7 @@
       <table md-table md-row-select multiple ng-model="vm.selected" md-progress="vm.promise">
         <thead md-head>
           <tr md-row>
+            <th md-column><span>Image</span></th>
             <th md-column><span>Name</span></th>
             <th md-column><span>Description</span></th>
             <th md-column>Created Date</th>
@@ -29,6 +33,7 @@
         </thead>
         <tbody md-body>
           <tr md-row md-select="item" md-select-id="key" ng-repeat="(key, item) in vm.articles">
+            <td md-cell><img ng-src="{{item.imageUrl}}" /></td>
             <td md-cell>{{item.name}}</td>
             <td md-cell>{{item.description}}</td>
             <td md-cell>{{item.createdDate}}</td>
