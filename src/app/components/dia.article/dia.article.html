@@ -7,8 +7,8 @@
   <form ng-submit="vm.createOrUpdate(vm.isNew)">
     <md-dialog-content layout layout-padding>
 
-      <div flex="none" layout id="dia-article-image-box">
-        <div flex="none" layout layout-align="center center"
+      <div flex="none" layout="column" id="dia-article-image-box">
+        <div ng-if="!vm.image && vm.isNew" flex="none" layout layout-align="center center"
         ngf-resize-if="$width > 1000 || $height > 1000"
         ngf-fix-orientation="true"
         ngf-drop
@@ -17,12 +17,22 @@
         ngf-drag-over-class="'dragover'"
         accept="image/*,application/pdf"
         ngf-pattern="'image/*'">
-          <div ng-if="!vm.image" >点击框框 <br/>或者<br/> 把图片拖到里面</div>
-          <img ng-if="vm.image" width="100%" flex="none" ngf-src="vm.image"/>
+          <div>点击框框 <br/>或者<br/> 把图片拖到里面</div>
         </div>
-        <!-- <div flex="none" layout layout-align="center center" ng-if="vm.image">
-          <img width="100%" flex="none" ngf-src="vm.image"/>
-        </div> -->
+
+        <div flex="none" ng-if="vm.image || !vm.isNew">
+          <md-button
+            class="md-raised md-primary"
+            ngf-resize-if="$width > 1000 || $height > 1000"
+            ngf-fix-orientation="true"
+            ngf-select="vm.uploadFile($file)"
+            accept="image/*,application/pdf"
+            ngf-pattern="'image/*'">
+            换图片
+          </md-button>
+        </div>
+        <img ng-if="vm.image|| !vm.isNew" width="100%" flex="none" ngf-src="vm.image || vm.article.imageUrl"/>
+
       </div>
       <div flex layout="column" id="dia-article-info">
           <md-input-container>

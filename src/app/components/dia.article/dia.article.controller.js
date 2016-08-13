@@ -36,16 +36,22 @@
     }
 
     vm.createOrUpdate = function(isCreate){
+      //create new article
       if(isCreate){
         if(vm.image){
           STORE_articles.createArticleWithImage(vm.image, vm.article);
-          $mdDialog.cancel();
         }else{
           STORE_articles.createArticle(vm.article);
-          $mdDialog.cancel();
         }
-      }else{
-        vm.update();
+        $mdDialog.cancel();
+      }
+      //update article
+      else{
+        if(vm.image){
+          STORE_articles.updateImage(articleId, vm.image);
+        }
+        STORE_articles.updateArticle(articleId, vm.article);
+        $mdDialog.cancel();
       }
     }
 
