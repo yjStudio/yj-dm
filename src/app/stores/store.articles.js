@@ -58,13 +58,10 @@
       },
 
       createArticleWithImage: function(file, object){
-        var that = this;
         var newItemRef = this.createArticle(object)
         var id = newItemRef.key;
 
-        this.uploadImage(id, file).then(function(imageUrl){
-          that.ref.child(id).child("imageUrl").set(imageUrl);
-        });
+        this.updateImage(id, file);
       },
 
       updateArticle: function(id, object){
@@ -77,6 +74,13 @@
         model.modifiedDate = Date.now();
         return this.ref.child(id)
         .update(model);
+      },
+
+      updateImage : function(id, file){
+        var that = this;
+        this.uploadImage(id, file).then(function(imageUrl){
+          that.ref.child(id).child("imageUrl").set(imageUrl);
+        });
       },
 
       uploadImage : function(id, file){
