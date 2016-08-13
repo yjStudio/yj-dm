@@ -1,0 +1,49 @@
+<md-dialog id="dia-article">
+  <md-toolbar>
+    <div class="md-toolbar-tools md-primary">
+      <h2>{{vm.isNew ? '创建新的商品':'修改商品'}}</h2>
+    </div>
+  </md-toolbar>
+  <form ng-submit="vm.createOrUpdate(vm.isNew)">
+    <md-dialog-content layout layout-padding>
+
+      <div flex="none" layout id="dia-article-image-box">
+        <div flex="none" layout layout-align="center center"
+        ngf-resize-if="$width > 1000 || $height > 1000"
+        ngf-fix-orientation="true"
+        ngf-drop
+        ngf-select="vm.uploadFile($file)"
+        class="drop-box"
+        ngf-drag-over-class="'dragover'"
+        accept="image/*,application/pdf"
+        ngf-pattern="'image/*'">
+          <div ng-if="!vm.image" >点击框框 <br/>或者<br/> 把图片拖到里面</div>
+          <img ng-if="vm.image" width="100%" flex="none" ngf-src="vm.image"/>
+        </div>
+        <!-- <div flex="none" layout layout-align="center center" ng-if="vm.image">
+          <img width="100%" flex="none" ngf-src="vm.image"/>
+        </div> -->
+      </div>
+      <div flex layout="column" id="dia-article-info">
+          <md-input-container>
+            <label>商品名字</label>
+            <input ng-model="vm.article.name" md-autofocus required>
+          </md-input-container>
+
+          <md-input-container>
+            <label>描述</label>
+            <textarea ng-model="vm.article.description" md-maxlength="500" rows="3"></textarea>
+          </md-input-container>
+
+          <md-input-container>
+            <label>序號</label>
+            <input ng-model="vm.article.serial">
+          </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="vm.cancel()">关闭</md-button>
+      <md-button type="submit" class="md-primary md-raised"> {{vm.isNew ? '创建':'保存'}}</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

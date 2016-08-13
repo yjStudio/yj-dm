@@ -1,0 +1,26 @@
+#dia-article{
+    width: 100%;
+    max-width: 760px;
+}
+
+#dia-article-image-box{
+  max-height: 300px;
+  max-width: 300px;
+}
+
+#dia-article-info{
+  margin-left: 16px
+}
+
+#dia-article .drop-box{
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  width: 300px;
+  max-height: 300px;
+  text-align: center;
+  margin: 10px;
+}
+
+#dia-article .dragover {
+    border-color: grey;
+}
