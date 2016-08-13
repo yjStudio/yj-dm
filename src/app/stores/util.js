@@ -9,6 +9,20 @@
 
     var util =
     {
+
+      /**
+       * extract image extension
+       * @method getImageExtension
+       * @param {string} fileName
+       * @return {match} extensionMatch
+       */
+      getImageExtension: function(fileName){
+        var reg = /\.(jpe?g|png|gif|bmp)$/i;
+        var match = reg.exec(fileName);
+        return match;
+      },
+
+
       /**
        * asign value to model
        * @method parseModel
