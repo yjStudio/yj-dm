@@ -51,8 +51,20 @@
           $log.warn("Dont have article object");
           return;
         }
+        var model = Util.parseModel(this.model, object)
+        model.createdDate = Date.now();
+        model.modifiedDate = Date.now();
+        return this.ref.push(model);
+      },
 
-        this.ref.push(Util.parseModel(this.model, object));
+      createArticleWithImage: function(file, object){
+        var that = this;
+        var newItemRef = this.createArticle(object)
+        var id = newItemRef.key;
+
+        this.uploadImage(id, file).then(function(imageUrl){
+          that.ref.child(id).child("imageUrl").set(imageUrl);
+        });
       },
 
       updateArticle: function(id, object){
@@ -61,17 +73,20 @@
           return;
         }
 
-        this.ref.child(id)
-        .update(Util.parseModel(this.model, object));
+        var model = Util.parseModel(this.model, object)
+        model.modifiedDate = Date.now();
+        return this.ref.child(id)
+        .update(model);
       },
 
       uploadImage : function(id, file){
-        var fileName = id + ".jpg";
+        var extension = Util.getImageExtension(file.name)[0];
+        var fileName = id + extension;
         return Util.uploadImage(this.endpoint, fileName, file);
       },
 
       removeArticle: function(id){
-        this.ref.child(id)
+        return this.ref.child(id)
         .remove();
       }
     }
