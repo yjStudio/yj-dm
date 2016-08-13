@@ -11,6 +11,7 @@
                      'ui.router',
                      'ngMaterial',
                      'ngFileUpload',
+                     'md.data.table',
                      'toastr']);
 
 })();
