@@ -1,17 +1,42 @@
-<md-content id="dash-articles" layout-fill>
-  <md-button ng-click="" class="md-primary md-raised"
+<md-content id="dash-articles" layout-fill ng-if="vm.articles">
+  <!-- <md-button ng-click="" class="md-primary md-raised"
     ngf-select="vm.uploadFiles($files,$invalidFile)"
     ngf-resize-if="$width > 1200 || $height > 1200"
     ngf-accept="'image/*'"
     ngf-fix-orientation="true"
     multiple="multiple">
-    添加新的商品
+    新的商品
   </md-button>
+  <md-button ng-click="vm.showDialogArticleCollective()" class="md-primary md-raised">
+    添加多个商品
+  </md-button> -->
   <md-card>
-    <md-card-content>
-    </md-card-content>
-    <md-card-footer>
-      Card footer
-    </md-card-footer>
+    <md-toolbar class="md-table-toolbar md-default">
+      <div class="md-toolbar-tools">
+        <span>Nutrition</span>
+      </div>
+    </md-toolbar>
+
+    <md-table-container>
+      <table md-table md-row-select multiple ng-model="vm.selected" md-progress="vm.promise">
+        <thead md-head>
+          <tr md-row>
+            <th md-column><span>Name</span></th>
+            <th md-column><span>Description</span></th>
+            <th md-column>Created Date</th>
+            <th md-column>Modified Date</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row md-select="item" md-select-id="key" ng-repeat="(key, item) in vm.articles">
+            <td md-cell>{{item.name}}</td>
+            <td md-cell>{{item.description}}</td>
+            <td md-cell>{{item.createdDate}}</td>
+            <td md-cell>{{item.modifiedDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
   </md-card>
+
 </md-content>
