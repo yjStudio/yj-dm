@@ -52,6 +52,10 @@
       </div>
     </md-dialog-content>
     <md-dialog-actions>
+      <md-button ng-if="!vm.isNew" ng-click="vm.showConfirmRemove()" class="md-icon-button">
+        <md-icon>delete</md-icon>
+      </md-button>
+      <span flex></span>
       <md-button ng-click="vm.cancel()">关闭</md-button>
       <md-button type="submit" class="md-primary md-raised"> {{vm.isNew ? '创建':'保存'}}</md-button>
     </md-dialog-actions>

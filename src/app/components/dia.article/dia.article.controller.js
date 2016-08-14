@@ -55,6 +55,21 @@
       }
     }
 
+    vm.showConfirmRemove = function(){
+      var confirm = $mdDialog.confirm()
+          .title('删除商品')
+          .textContent('你确定要删除这个商品？')
+          .ok('删除')
+          .cancel('取消');
+      $mdDialog.show(confirm).then(function() {
+        vm.remove();
+      });
+    }
+
+    vm.remove = function(){
+      STORE_articles.removeArticle(articleId);
+    }
+
     vm.cancel = function() {
       $mdDialog.cancel();
     };
