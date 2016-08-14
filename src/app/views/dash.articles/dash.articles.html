@@ -29,6 +29,7 @@
             <th md-column><span>Description</span></th>
             <th md-column>Created Date</th>
             <th md-column>Modified Date</th>
+            <th md-column>Actions</th>
           </tr>
         </thead>
         <tbody md-body>
@@ -38,6 +39,11 @@
             <td md-cell>{{item.description}}</td>
             <td md-cell>{{item.createdDate}}</td>
             <td md-cell>{{item.modifiedDate}}</td>
+            <td md-cell>
+              <md-button ng-click="vm.showDialogArticle(key)" class="md-icon-button">
+                <md-icon>edit</md-icon>
+              </md-button>
+            </td>
           </tr>
         </tbody>
       </table>
