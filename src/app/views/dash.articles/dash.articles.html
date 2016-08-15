@@ -18,10 +18,11 @@
           <tr md-row>
             <th md-column><span>图片</span></th>
             <th md-column><span>名字</span></th>
-            <th md-column><span>描述</span></th>
+            <th md-column><span>说明</span></th>
+            <th md-column><span>序号</span></th>
             <th md-column>创建时间</th>
-            <th md-column>更改时间</th>
-            <th md-column>操作</th>
+            <th md-column>最后更改时间</th>
+            <th md-column>更改</th>
           </tr>
         </thead>
         <tbody md-body>
@@ -29,6 +30,7 @@
             <td md-cell><img ng-src="{{item.imageUrl}}" /></td>
             <td md-cell>{{item.name}}</td>
             <td md-cell>{{item.description}}</td>
+            <td md-cell>{{item.serial}}</td>
             <td md-cell>{{item.createdDate}}</td>
             <td md-cell>{{item.modifiedDate}}</td>
             <td md-cell>
