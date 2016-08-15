@@ -1,17 +1,9 @@
 <md-content id="dash-articles" layout-fill ng-if="vm.articles">
-  <!-- <md-button ng-click="" class="md-primary md-raised"
-    ngf-select="vm.uploadFiles($files,$invalidFile)"
-    ngf-resize-if="$width > 1200 || $height > 1200"
-    ngf-accept="'image/*'"
-    ngf-fix-orientation="true"
-    multiple="multiple">
-    新的商品
-  </md-button>
-  <md-button ng-click="vm.showDialogArticleCollective()" class="md-primary md-raised">
-    添加多个商品
-  </md-button> -->
   <md-button ng-click="vm.showDialogArticle('new')" class="md-primary md-raised">
     添加商品
+  </md-button>
+  <md-button ng-click="vm.showDialogArticleCollective()" class="md-primary md-raised">
+    批量上传
   </md-button>
   <md-card>
     <md-toolbar class="md-table-toolbar md-default">
