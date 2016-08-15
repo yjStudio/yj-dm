@@ -1,0 +1,11 @@
+#dia-article-collective{
+  width: 100%;
+  max-width: 1000px;
+}
+
+#dia-article-collective tbody td img{
+  width: 100px;
+  max-height: 150px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

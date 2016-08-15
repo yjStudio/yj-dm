@@ -1,0 +1,53 @@
+<md-dialog id="dia-article-collective">
+  <md-toolbar>
+    <div class="md-toolbar-tools md-primary">
+      <h2>集体上传最多20个文件</h2>
+    </div>
+  </md-toolbar>
+  <form ng-submit="vm.createArticles()">
+    <md-dialog-content layout-padding>
+      <md-button
+        ng-if="!vm.selectedImage"
+        class="md-primary md-raised"
+        ngf-select="vm.uploadFiles($files,$invalidFile)"
+        ngf-resize-if="$width > 1200 || $height > 1200"
+        ngf-accept="'image/*'"
+        ngf-fix-orientation="true"
+        multiple="multiple">
+        选择图片
+      </md-button>
+
+      <md-table-container>
+        <table md-table ng-model="vm.selected">
+          <thead md-head>
+            <tr md-row>
+              <th md-column><span>Image</span></th>
+              <th md-column><span>Name</span></th>
+              <th md-column><span>Description</span></th>
+              <th md-column><span>Serial</span></th>
+              <th md-column>Actions</th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="(key, item) in vm.newArticles">
+              <td md-cell><img ngf-src="item.file"/></td>
+              <td md-cell><input ng-model="item.name" required/></td>
+              <td md-cell><textarea ng-model="item.description"></textarea></td>
+              <td md-cell><input ng-model="item.serial"></td>
+              <td md-cell>
+                <md-button ng-click="vm.newArticles.splice($index, 1)" class="md-icon-button">
+                  <md-icon>delete</md-icon>
+                </md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+
+    </md-dialog-content>
+    <md-dialog-actions ng-if="vm.newArticles.length">
+      <md-button ng-click="vm.cancel()">关闭</md-button>
+      <md-button type="submit" class="md-primary md-raised"> {{vm.isNew ? '创建':'保存'}}</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
