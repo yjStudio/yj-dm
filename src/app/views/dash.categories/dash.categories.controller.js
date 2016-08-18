@@ -14,7 +14,7 @@
     vm.categories;
 
     STORE_categories.getCategories()
-    .then(function(data){
+    .then(function(){
       vm.categories = STORE_categories.categories;
     })
 
@@ -29,7 +29,7 @@
         locals:{
           categoryId: categoryId
         },
-        clickOutsideToClose:true,
+        clickOutsideToClose:true
       })
     };
 
