@@ -11,7 +11,9 @@
         <span>商品</span>
       </div>
     </md-toolbar>
-
+    <md-table-pagination md-limit="vm.pagination.limit" md-limit-options="[5, 10, 15]"
+      md-page="vm.pagination.page" md-total="{{vm.pagination.total}}" md-page-select>
+    </md-table-pagination>
     <md-table-container>
       <table md-table md-row-select multiple ng-model="vm.selected" md-progress="vm.promise">
         <thead md-head>
@@ -26,7 +28,10 @@
           </tr>
         </thead>
         <tbody md-body>
-          <tr md-row md-select="item" md-select-id="key" ng-repeat="(key, item) in vm.articles">
+          <tr md-row md-select="item" md-select-id="key"
+            ng-repeat="(key, item) in vm.articles
+              | orderBy: '-createdDate'
+              | limitTo: vm.pagination.limit: (vm.pagination.page - 1) * vm.pagination.limit">
             <td md-cell><img ng-src="{{item.imageUrl}}" /></td>
             <td md-cell>{{item.name}}</td>
             <td md-cell>{{item.description}}</td>
@@ -42,6 +47,6 @@
         </tbody>
       </table>
     </md-table-container>
-  </md-card>
 
+  </md-card>
 </md-content>

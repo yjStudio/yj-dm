@@ -6,8 +6,7 @@
 
     $stateProvider
     .state('dashboard.articles', {
-      // abstract: true,
-      url: '/articles',
+      url: '/articles?page',
       templateUrl: 'app/views/dash.articles/dash.articles.html',
       controller: "DashArticlesController",
       controllerAs: "vm"

@@ -6,18 +6,31 @@
     .controller('DashArticlesController', DashArticlesController);
 
   /** @ngInject */
-  function DashArticlesController($log, $scope, $state, $mdDialog, Util, Upload, STORE_articles){
+  function DashArticlesController($log, $scope, $state, $stateParams, $mdDialog, Util, Upload, STORE_articles){
 
     $log.debug("Init categories controller");
 
     var vm = this;
+
+    vm.page = $stateParams.page | 1;
     vm.selected = [];
-    vm.articles = STORE_articles.articles;
+    vm.articles = Object.keys(STORE_articles.articles).map(function(key) {
+      return STORE_articles.articles[key];
+    });
+
+    vm.pagination = {
+      limit: 10,
+      page: 1,
+      total: 100
+    }
 
     vm.promise = STORE_articles.getArticles();
 
     STORE_articles.event.on("change", function(){
-      vm.articles = STORE_articles.articles
+      vm.articles = Object.keys(STORE_articles.articles).map(function(key) {
+        return STORE_articles.articles[key];
+      });
+      vm.pagination.total = vm.articles.length
     });
 
     vm.showDialogArticle = function(articleId){
@@ -38,27 +51,5 @@
         clickOutsideToClose:true
       })
     };
-
-    // for multiple files:
-    vm.uploadFiles = function (files) {
-      var file;
-      $log.debug("upload images", files);
-      if (files && files.length) {
-        for (var i = 0; i < files.length; i++) {
-          file = files[i];
-          vm.updateFile(file);
-        }
-      }
-    }
-
-    vm.updateFile = function(file){
-      Upload.imageDimensions(file)
-      .then(function(dimension){
-        Upload.resize(file, dimension.width, dimension.height, 0.8)
-        .then(function(resizedFile){
-        });
-      })
-    }
-
   }
 })();
