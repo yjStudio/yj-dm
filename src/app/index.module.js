@@ -12,6 +12,7 @@
                      'ngMaterial',
                      'ngFileUpload',
                      'md.data.table',
+                     'ui.tree',
                      'toastr']);
 
 })();
