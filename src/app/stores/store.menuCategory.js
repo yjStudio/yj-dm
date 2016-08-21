@@ -34,25 +34,25 @@
             deferred.reject();
           }
           else{
-            that.categories = snapshot.val();
+            that.menuCategory = snapshot.val();
             deferred.resolve(that.categories);
           }
         });
         return deferred.promise;
       },
 
-      updateMenuCategory: function(id, data){
-        firebase.database().ref(this.endpoint +"/"+ id)
+      updateMenuCategory: function(data){
+        firebase.database().ref(this.endpoint)
         .update(data)
       },
 
     }
 
     //sync data
-    firebase.database().ref("categories")
+    firebase.database().ref(store.endpoint)
     .on('value', function(data) {
       //refresh data
-      store.categories = data.val();
+      store.menuCategory = data.val();
 
       //fire change event
       store.event.trigger(store.EVENTS.change);
