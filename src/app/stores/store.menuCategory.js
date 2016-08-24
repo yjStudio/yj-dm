@@ -5,7 +5,7 @@
     .module('yjDm')
     .factory('STORE_menuCategory', STORE_menuCategory)
 
-  function STORE_menuCategory($q, $log){
+  function STORE_menuCategory($q, Util, $log){
 
     var store =
     {
@@ -43,7 +43,7 @@
 
       updateMenuCategory: function(data){
         firebase.database().ref(this.endpoint)
-        .update(data)
+        .set(data)
       },
 
     }
@@ -53,6 +53,12 @@
     .on('value', function(data) {
       //refresh data
       store.menuCategory = data.val();
+      Util.traverse(store.menuCategory, function(key, value){
+        //if is a category add categories
+        if(value.id && !value.categories){
+            value.categories = [];
+        }
+      });
 
       //fire change event
       store.event.trigger(store.EVENTS.change);
