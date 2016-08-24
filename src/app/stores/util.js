@@ -47,12 +47,13 @@
        * @param {object} o
        * @param {function} func
        */
-      function traverse(o,func) {
+      traverse: function (o,func) {
+        var that = this;
         for (var i in o) {
           func.apply(this,[i,o[i]]);
           if (o[i] !== null && typeof(o[i])=="object") {
             //going on step down in the object tree!!
-            traverse(o[i],func);
+            that.traverse(o[i],func);
           }
         }
       },
