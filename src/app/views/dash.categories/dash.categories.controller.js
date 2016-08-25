@@ -6,37 +6,18 @@
     .controller('DashCategoriesController', DashCategoriesController);
 
   /** @ngInject */
-  function DashCategoriesController($log, $state, $mdDialog, STORE_categories, STORE_menuCategory){
+  function DashCategoriesController($log, $scope, $state, $mdDialog, STORE_categories, STORE_menuCategory){
 
     $log.debug("Init categories controller");
 
     var vm = this;
     vm.categories;
-    vm.categoriesMenuItems;
 
-    vm.categoriesMenu = [];
+    STORE_categories.getCategories();
 
-    STORE_categories.getCategories()
-    .then(function(){
-      // vm.categories = STORE_categories.categories;
-    })
-
-    STORE_categories.event.on("change", function(){
+    STORE_categories.on("change", function(){
       vm.categories = STORE_categories.categories;
-
-      var tmp = angular.copy(vm.categories);
-      vm.categoriesMenuItems = Object.keys(tmp).map(function(key) {
-        var object = tmp[key]
-        object.categories = [];
-        return object;
-      });
-    })
-
-    STORE_menuCategory.getMenuCategory();
-
-    STORE_menuCategory.event.on("change", function(){
-      vm.categoriesMenu = STORE_menuCategory.menuCategory;
-      console.log(STORE_menuCategory.menuCategory);
+      if (!$scope.$$phase) $scope.$apply();
     })
 
     vm.showDialogCategory = function(categoryId){
@@ -60,11 +41,6 @@
       $mdDialog.show(confirm).then(function() {
         STORE_categories.removeCategory(key);
       });
-    }
-
-    vm.saveMenu = function(){
-      var data = angular.copy(vm.categoriesMenu)
-      STORE_menuCategory.updateMenuCategory(data);
     }
   }
 })();

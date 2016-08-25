@@ -11,7 +11,7 @@
     {
       categories:{},
 
-      event: new EventEmitter(),
+      ref: firebase.database().ref("categories"),
 
       EVENTS: {
         change: "change"
@@ -25,20 +25,10 @@
        */
       getCategories:function(){
         var that = this;
-        var deferred = $q.defer();
-
-        firebase.database().ref()
-        .child(this.endpoint)
-        .once("value", function(snapshot){
-          if(snapshot.val() === null){
-            deferred.reject();
-          }
-          else{
+        return this.ref.once("value", function(snapshot){
             that.categories = snapshot.val();
-            deferred.resolve(that.categories);
-          }
         });
-        return deferred.promise;
+        $scope.$apply();
       },
 
       /**
@@ -66,7 +56,7 @@
 
       updateCategory: function(id, data){
         firebase.database().ref(this.endpoint +"/"+ id)
-        .update(data)
+        .set(data)
       },
 
       removeCategory: function(id){
@@ -101,14 +91,15 @@
       }
     }
 
+    Events(store);
+
     //sync data
-    firebase.database().ref("categories")
-    .on('value', function(data) {
+    store.ref.on('value', function(data) {
       //refresh data
       store.categories = data.val();
 
       //fire change event
-      store.event.trigger(store.EVENTS.change);
+      store.emit(store.EVENTS.change);
     });
 
     return store;

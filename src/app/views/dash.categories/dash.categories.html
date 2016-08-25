@@ -1,17 +1,4 @@
-<md-content id="dash-category" layout-fill>
-
-
-  <script type="text/ng-template" id="nodes_renderer.html">
-    <div ui-tree-handle class="tree-node tree-node-content">
-      {{category.name}}
-    </div>
-    <ol ui-tree-nodes="" ng-model="category.categories">
-      <li ng-repeat="category in category.categories" ui-tree-node ng-include="'nodes_renderer.html'">
-      </li>
-    </ol>
-  </script>
-
-
+<md-content id="dash-category" layout-fill ng-cloak>
   <md-card flex="none">
     <md-card-header>
       <md-card-header-text>
@@ -33,27 +20,4 @@
       </md-list>
     </md-card-content>
   </md-card>
-
-  categories
-  <div layout>
-    <div flex>
-      <div ui-tree>
-        <ol ui-tree-nodes="" ng-model="vm.categoriesMenuItems">
-          <li ng-repeat="item in vm.categoriesMenuItems" ui-tree-node>
-            <div ui-tree-handle>
-              {{item.name}}
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-    <div flex>
-      <md-button class="md-primary md-raised" ng-click="vm.saveMenu()"> Save </md-button>
-      <div ui-tree id="tree-root" data-max-depth="3">
-        <ol ui-tree-nodes ng-model="vm.categoriesMenu">
-          <li ng-repeat="category in vm.categoriesMenu" ui-tree-node ng-include="'nodes_renderer.html'"></li>
-        </ol>
-      </div>
-    </div>
-  </div>
 </md-content>
