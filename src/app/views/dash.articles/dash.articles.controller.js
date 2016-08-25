@@ -26,7 +26,7 @@
 
     vm.promise = STORE_articles.getArticles();
 
-    STORE_articles.event.on("change", function(){
+    STORE_articles.on("change", function(){
       vm.articles = Object.keys(STORE_articles.articles).map(function(key) {
         return STORE_articles.articles[key];
       });
