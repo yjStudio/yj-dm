@@ -4,7 +4,6 @@
   angular
     .module('yjDm', ['ngAnimate',
                      'ngCookies',
-                     'ngTouch',
                      'ngSanitize',
                      'ngMessages',
                      'ngAria',
