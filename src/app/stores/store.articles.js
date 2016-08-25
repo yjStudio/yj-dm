@@ -22,8 +22,6 @@
         serial: false
       },
 
-      event: new EventEmitter(),
-
       EVENTS: {
         change: "change"
       },
@@ -32,18 +30,9 @@
 
       getArticles: function(){
         var that = this;
-        var deferred = $q.defer();
-
-        this.ref.once("value", function(snapshot){
-          if(snapshot.val() === null){
-            deferred.reject();
-          }
-          else{
+        return this.ref.once("value", function(snapshot){
             that.articles = snapshot.val();
-            deferred.resolve(that.articles);
-          }
         });
-        return deferred.promise;
       },
 
       createArticle: function(object){
@@ -95,13 +84,15 @@
       }
     }
 
+    Events(store);
+
     //sync data
     store.ref.on('value', function(data) {
       //refresh data
       store.articles = data.val();
 
       //fire change event
-      store.event.trigger(store.EVENTS.change);
+      store.emit(store.EVENTS.change);
     });
 
     return store;
