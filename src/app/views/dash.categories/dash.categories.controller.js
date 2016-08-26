@@ -6,7 +6,7 @@
     .controller('DashCategoriesController', DashCategoriesController);
 
   /** @ngInject */
-  function DashCategoriesController($log, $scope, $state, $mdDialog, STORE_categories, STORE_menuCategory){
+  function DashCategoriesController($log, $scope, $state, $mdDialog, STORE_categories){
 
     $log.debug("Init categories controller");
 

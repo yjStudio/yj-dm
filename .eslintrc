@@ -6,6 +6,7 @@
     "jasmine": true
   },
   "globals": {
+    "Events": true,
     "angular": true,
     "EventEmitter": true,
     "firebase": true,

@@ -43,8 +43,8 @@
 
       updateMenuCategory: function(data){
         firebase.database().ref(this.endpoint)
-        .set(data)
-      },
+        .set(data);
+      }
 
     }
 
@@ -54,6 +54,8 @@
     store.ref.on('value', function(data) {
       //refresh data
       store.menuCategory = data.val();
+      $log.debug("change menuCategory", data.val())
+
       Util.traverse(store.menuCategory, function(key, value){
         //if is a category add categories
         if(value.id && !value.categories){

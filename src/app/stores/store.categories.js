@@ -28,7 +28,6 @@
         return this.ref.once("value", function(snapshot){
             that.categories = snapshot.val();
         });
-        $scope.$apply();
       },
 
       /**

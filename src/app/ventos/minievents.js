@@ -1,3 +1,4 @@
+/* eslint-disable */
 function Events(target){
   var events = {}, empty = [];
   target = target || this
