@@ -11,14 +11,16 @@
     $log.debug("Init categories controller");
 
     var vm = this;
-    vm.categories;
+    vm.categories = STORE_categories.categories;
 
     STORE_categories.getCategories();
 
-    STORE_categories.on("change", function(){
+    function categories_change(){
       vm.categories = STORE_categories.categories;
       if (!$scope.$$phase) $scope.$apply();
-    })
+    }
+
+    STORE_categories.on("change", categories_change);
 
     vm.showDialogCategory = function(categoryId){
       $mdDialog.show({
@@ -42,5 +44,9 @@
         STORE_categories.removeCategory(key);
       });
     }
+
+    $scope.$on("$destroy", function(){
+      STORE_categories.off("change", categories_change);
+    })
   }
 })();

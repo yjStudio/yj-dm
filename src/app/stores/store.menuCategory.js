@@ -11,7 +11,7 @@
     {
       menuCategory:[],
 
-      event: new EventEmitter(),
+      ref: firebase.database().ref("menuCategory"),
 
       EVENTS: {
         change: "change"
@@ -48,9 +48,10 @@
 
     }
 
+    Events(store);
+
     //sync data
-    firebase.database().ref(store.endpoint)
-    .on('value', function(data) {
+    store.ref.on('value', function(data) {
       //refresh data
       store.menuCategory = data.val();
       Util.traverse(store.menuCategory, function(key, value){
@@ -61,7 +62,7 @@
       });
 
       //fire change event
-      store.event.trigger(store.EVENTS.change);
+      store.emit(store.EVENTS.change);
     });
 
     return store;

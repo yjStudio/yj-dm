@@ -1,0 +1,39 @@
+<md-content id="dash-category" layout-fill>
+
+  <script type="text/ng-template" id="nodes_renderer.html">
+    <div ui-tree-handle class="tree-node tree-node-content">
+      <span>{{category.name}}</span>
+      <md-button class="md-icon-button" data-nodrag ng-click="vm.removeMenu(this)" style="margin:0">
+        <md-icon> clear</md-icon>
+      </md-button>
+    </div>
+    <ol ui-tree-nodes="" ng-model="category.categories">
+      <li ng-repeat="category in category.categories" ui-tree-node ng-include="'nodes_renderer.html'">
+      </li>
+    </ol>
+  </script>
+
+  <div layout>
+    <div flex>
+      <p>分類</p>
+      <div ui-tree>
+        <ol ui-tree-nodes="" ng-model="vm.categoriesMenuItems">
+          <li ng-if="!vm.itemExistInMenu(item.id)" ng-repeat="item in vm.categoriesMenuItems" ui-tree-node>
+            <div ui-tree-handle>
+              {{item.name}}
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div flex>
+      <p>菜單</p>
+      <div ui-tree id="tree-root" data-max-depth="2">
+        <ol ui-tree-nodes ng-model="vm.categoriesMenu">
+          <li ng-repeat="category in vm.categoriesMenu" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+        </ol>
+      </div>
+      <md-button class="md-primary md-raised" ng-click="vm.saveMenu()"> Save </md-button>
+    </div>
+  </div>
+</md-content>
