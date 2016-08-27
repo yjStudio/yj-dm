@@ -15,7 +15,9 @@
     vm.page = $stateParams.page | 1;
     vm.selected = [];
     vm.articles = Object.keys(STORE_articles.articles).map(function(key) {
-      return STORE_articles.articles[key];
+      var object = STORE_articles.articles[key];
+      object.id = key;
+      return object;
     });
 
     vm.pagination = {
@@ -28,7 +30,9 @@
 
     STORE_articles.on("change", function(){
       vm.articles = Object.keys(STORE_articles.articles).map(function(key) {
-        return STORE_articles.articles[key];
+        var object = STORE_articles.articles[key];
+        object.id = key;
+        return object;
       });
       vm.pagination.total = vm.articles.length
     });
