@@ -1,0 +1,15 @@
+.article-cart-wrapper{
+  padding: 12px;
+}
+
+.article-cart{
+  max-width: 300px;
+  width: 100%;
+  background: red;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-cart img{
+  width: 100%;
+}
