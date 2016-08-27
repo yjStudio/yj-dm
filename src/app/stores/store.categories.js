@@ -5,7 +5,7 @@
     .module('yjDm')
     .factory('STORE_categories', STORE_categories)
 
-  function STORE_categories($q, $log){
+  function STORE_categories($q, $log, STORE_menuCategory, Util){
 
     var store =
     {
@@ -60,7 +60,30 @@
 
       removeCategory: function(id){
         firebase.database().ref(this.endpoint +"/"+ id)
-        .remove()
+        .remove();
+
+        //remove items of STORE_menuCategory
+        STORE_menuCategory.ref.once("value", function(snapshot){
+          var menu = snapshot.val();
+
+          for(var key in menu){
+            if(menu[key].id == id){
+              menu.splice(key,1);
+              break;
+            }
+
+            if(menu[key].categories){
+              var submenu = menu[key].categories
+              for(var key2 in submenu){
+                if(submenu[key2].id == id){
+                  submenu.splice(key2,1);
+                  break;
+                }
+              }
+            }
+          }
+          STORE_menuCategory.ref.set(menu);
+        })
       },
 
       /**
