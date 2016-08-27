@@ -19,7 +19,8 @@
         description: false,
         createdDate: false,
         modifiedDate: false,
-        serial: false
+        serial: false,
+        category: false
       },
 
       EVENTS: {

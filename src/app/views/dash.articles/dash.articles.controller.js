@@ -6,7 +6,7 @@
     .controller('DashArticlesController', DashArticlesController);
 
   /** @ngInject */
-  function DashArticlesController($log, $scope, $state, $stateParams, $mdDialog, Util, Upload, STORE_articles){
+  function DashArticlesController($log, $scope, $state, $stateParams, $mdDialog, Util, Upload, STORE_articles, STORE_categories){
 
     $log.debug("Init categories controller");
 
@@ -14,6 +14,7 @@
 
     vm.page = $stateParams.page | 1;
     vm.selected = [];
+    vm.categories
     vm.articles = Object.keys(STORE_articles.articles).map(function(key) {
       var object = STORE_articles.articles[key];
       object.id = key;
@@ -28,7 +29,7 @@
 
     vm.promise = STORE_articles.getArticles();
 
-    STORE_articles.on("change", function(){
+    STORE_articles.on("change", function article_change(){
       vm.articles = Object.keys(STORE_articles.articles).map(function(key) {
         var object = STORE_articles.articles[key];
         object.id = key;
@@ -36,6 +37,15 @@
       });
       vm.pagination.total = vm.articles.length
     });
+
+
+    STORE_categories.on("change", function categories_change(){
+      vm.categories = STORE_categories.categories;
+    });
+
+    vm.changeCategory = function(article){
+      STORE_articles.updateArticle(article.id, article);
+    }
 
     vm.showDialogArticle = function(articleId){
       $mdDialog.show({
